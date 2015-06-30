@@ -15,6 +15,7 @@ var storage = require('../res/sdk-bundle').storage;
 var set = require('../lib/config/set');
 var auto = require('../lib/autoupdate');
 var scaffoldFramework = require('../lib/framework/scaffold');
+var command = require('../lib/util/command');
 
 storage.getGlobal(function(error, config){
     if (config.tracking) {
@@ -99,7 +100,7 @@ auto(function(){
         }
     }
 
-    if (program.args.length === 0) {
+    if (program.args.length === 0 || command.countValidCommand(program) <= 0) {
         program.help();
     }
 });
